@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^2.2.0",
@@ -19,5 +20,14 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.7",
     "sequelize-cli": "^6.6.3"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
+    "jest": "^30.0.4",
+    "mocha": "^11.7.1",
+    "node-mocks-http": "^1.17.2",
+    "sinon": "^21.0.0",
+    "supertest": "^7.1.3"
   }
 }
