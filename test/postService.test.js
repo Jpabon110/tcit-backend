@@ -1,4 +1,3 @@
-// test/postService.test.js
 const sinon = require('sinon');
 const db = require('../db/models');
 const postService = require('../services/postService');

@@ -3,17 +3,14 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = require('../routes/posts');
 
-// ✅ Cargamos las variables de entorno
 require('dotenv').config();
 
-// ✅ Generamos un token válido antes de los tests
 const validToken = jwt.sign(
   { id: 1, username: 'tcit' },
   process.env.JWT_SECRET,
   { expiresIn: process.env.JWT_EXPIRES_IN }
 );
 
-// ✅ Mockeamos todos los controladores
 jest.mock('../controllers/controller_post.js', () => ({
   getPosts: jest.fn((req, res) =>
     res.status(200).json({ success: true, message: 'getPosts ok' })
