@@ -5,10 +5,9 @@ const postsRouter = require("../routes/posts");
 const postService = require("../services/postService");
 require("dotenv").config();
 
-// ✅ Mockeamos todas las funciones del servicio de Posts
 jest.mock("../services/postService", () => ({
-  getPosts: jest.fn(),
-  getPost: jest.fn(),
+  getAllPosts: jest.fn(),
+  getPostById: jest.fn(),
   createPost: jest.fn(),
   updatePost: jest.fn(),
   deletePost: jest.fn(),
@@ -18,7 +17,6 @@ const app = express();
 app.use(express.json());
 app.use("/posts", postsRouter);
 
-// ✅ Generamos un token válido
 const validToken = jwt.sign(
   { id: 1, username: "tcit" },
   process.env.JWT_SECRET,
@@ -30,26 +28,28 @@ describe("Rutas de Posts con autenticación JWT", () => {
     jest.clearAllMocks();
   });
 
-  it("GET /posts debe llamar a getPosts", async () => {
-    postService.getPosts.mockResolvedValue([{ id: 1, name: "Post 1" }]);
+  it("GET /posts debe llamar a getAllPosts", async () => {
+    postService.getAllPosts.mockResolvedValue([{ id: 1, name: "Post 1" }]);
 
     const res = await request(app)
       .get("/posts")
       .set("Authorization", `Bearer ${validToken}`);
 
+    console.log("Respuesta GET /posts:", res.body);
     expect(res.status).toBe(200);
-    expect(postService.getPosts).toHaveBeenCalled();
+    expect(postService.getAllPosts).toHaveBeenCalled();
   });
 
-  it("GET /posts/:id debe llamar a getPost", async () => {
-    postService.getPost.mockResolvedValue({ id: 1, name: "Post 1" });
+  it("GET /posts/:id debe llamar a getPostById", async () => {
+    postService.getPostById.mockResolvedValue({ id: 1, name: "Post 1" });
 
     const res = await request(app)
       .get("/posts/1")
       .set("Authorization", `Bearer ${validToken}`);
 
+    console.log("Respuesta GET /posts/1:", res.body);
     expect(res.status).toBe(200);
-    expect(postService.getPost).toHaveBeenCalledWith("1");
+    expect(postService.getPostById).toHaveBeenCalledWith("1");
   });
 
   it("POST /posts debe llamar a createPost", async () => {
@@ -60,6 +60,7 @@ describe("Rutas de Posts con autenticación JWT", () => {
       .set("Authorization", `Bearer ${validToken}`)
       .send({ name: "Nuevo Post", description: "Descripción" });
 
+    console.log("Respuesta POST /posts:", res.body);
     expect(res.status).toBe(201);
     expect(postService.createPost).toHaveBeenCalledWith({
       name: "Nuevo Post",
@@ -75,6 +76,7 @@ describe("Rutas de Posts con autenticación JWT", () => {
       .set("Authorization", `Bearer ${validToken}`)
       .send({ name: "Post Actualizado" });
 
+    console.log("Respuesta PUT /posts/1:", res.body);
     expect(res.status).toBe(200);
     expect(postService.updatePost).toHaveBeenCalledWith("1", {
       name: "Post Actualizado",
@@ -88,6 +90,7 @@ describe("Rutas de Posts con autenticación JWT", () => {
       .delete("/posts/1")
       .set("Authorization", `Bearer ${validToken}`);
 
+    console.log("Respuesta DELETE /posts/1:", res.body);
     expect(res.status).toBe(200);
     expect(postService.deletePost).toHaveBeenCalledWith("1");
   });
