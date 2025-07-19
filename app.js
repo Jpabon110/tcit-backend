@@ -5,7 +5,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 
+require('dotenv').config();
+
 const postRouter = require('./routes/posts.js');
+const authRouter = require('./routes/auth');
 
 const app = express();
 
@@ -22,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.use('/posts', postRouter);
+app.use('/auth', authRouter);
 
 app.use((req, res, next) => {
   next(createError(404));
