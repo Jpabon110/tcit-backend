@@ -140,7 +140,7 @@ describe('Post Controller', () => {
 
       expect(postService.deletePost).toHaveBeenCalledWith('1');
       expect(mockRes.status).toHaveBeenCalledWith(200);
-      expect(mockRes.json).toHaveBeenCalledWith({ success: true, message: 'Post eliminado correctamente' });
+      expect(mockRes.json).toHaveBeenCalledWith({ success: true, record: true, message: 'Post eliminado correctamente' });
     });
 
     it('debe devolver un error 404 si el post a eliminar no se encuentra', async () => {

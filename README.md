@@ -6,7 +6,7 @@ Este documento te guiará paso a paso para poner en marcha el proyecto, utilizan
 
 - [Node.js](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
-- [PostgreSQL](https://www.postgresql.org/) (opcional)
+- [PostgreSQL](https://www.postgresql.org/)
 - [Docker](https://www.docker.com/) (opcional)
 - [pgAdmin4](https://www.pgadmin.org/) (opcional, para gestionar tu base de datos local)
 - Acceso a un servicio de base de datos en la nube (opcional)
@@ -102,7 +102,10 @@ JWT_EXPIRES_IN=1h
    ```
 
 ---
-
+## Correr los test
+   ```bash
+   npm run test
+   ```
 ---
 
 ## Notas adicionales
@@ -113,5 +116,3 @@ JWT_EXPIRES_IN=1h
 - Consulta la documentación de tu ORM para más detalles sobre migraciones y conexión.
 
 ---
-
-¡Listo! Ahora puedes elegir la opción que más se adapte a tus necesidades para levantar el proyecto Node.js + Express + PostgreSQL.

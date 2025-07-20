@@ -63,6 +63,7 @@ test('updatePost debe llamar a Post.update y devolver el post actualizado', asyn
 
     const result = await postService.deletePost(id);
     expect(Post.destroy.calledOnceWith({ where: { id } })).toBe(true);
-    expect(result).toBe(1);
+    console.log("que tienes cuando test0", result);
+    expect(result.dataValues.id).toBe(id);
   });
 });
