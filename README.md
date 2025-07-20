@@ -78,6 +78,8 @@ DB_PORT="5432"
 NAME_DATABASE="tcit"
 USER_DATABASE="postgres"
 CLAVE_DB="tu_Password1234"
+JWT_SECRET=hd72k9d8s7a6d81sajd81726hd91
+JWT_EXPIRES_IN=1h
    ```
 
 4. **Instala las dependencias**
