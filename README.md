@@ -13,7 +13,7 @@ Este documento te guiará paso a paso para poner en marcha el proyecto, utilizan
 
 ---
 
-## 1. Usar PostgreSQL local + pgAdmin4
+## 1. (Opcion 1) Usar PostgreSQL local + pgAdmin4
 
 Esta opción utiliza una instancia de PostgreSQL corriendo en tu máquina local. pgAdmin4 te ayudará a visualizar la base de datos que monta Docker si lo usas en la opción 2.
 
@@ -42,7 +42,8 @@ Esta opción utiliza una instancia de PostgreSQL corriendo en tu máquina local.
 
 5. **Ejecuta las migraciones**
    ```bash
-   npx sequelize db:migrate
+   npx sequelize-cli db:migrate --config config/config.js
+   npx sequelize-cli db:seed:all --config config/config.js
    # O el comando propio de tu ORM para migrar la base de datos
    ```
 
@@ -53,33 +54,15 @@ Esta opción utiliza una instancia de PostgreSQL corriendo en tu máquina local.
 
 ---
 
-## 2. Usar Docker con PostgreSQL
+## 2. (Opcion 2) Usar Docker con PostgreSQL
 
 Esta opción utiliza Docker y Docker Compose para levantar la base de datos en un contenedor.
 
 ### Pasos
 
-1. **Crea el archivo `docker-compose.yml`**  
-   Ejemplo:
-   ```yaml
-version: '3.8'
-
-services:
-  postgres:
-    image: postgres:17
-    container_name: postgres_tcit
-    restart: always
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_DB: tcit
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: tu_Password1234
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
+1. **Instalar docker compose**
+   ```bash
+   sudo apt install docker-compose-plugin -y
    ```
 
 2. **Levanta el contenedor**
@@ -104,7 +87,9 @@ CLAVE_DB="tu_Password1234"
 
 5. **Ejecuta las migraciones**
    ```bash
-   npx sequelize db:migrate
+   npx sequelize-cli db:migrate --config config/config.js
+   npx sequelize-cli db:seed:all --config config/config.js
+   # O el comando propio de tu ORM para migrar la base de datos
    ```
 
 6. **Levanta el proyecto**
@@ -113,57 +98,6 @@ CLAVE_DB="tu_Password1234"
    ```
 
 ---
-
-## 3. Conexión directa a la nube (Cloud PostgreSQL)
-
-Esta opción utiliza un servicio de base de datos PostgreSQL en la nube (como Heroku, Supabase, AWS RDS, etc).
-
-### Pasos
-
-1. **Obtén el string de conexión de tu proveedor de nube**  
-   Ejemplo:
-   ```
-   postgres://usuario:contraseña@host:puerto/nombre_db
-   ```
-
-2. **Configura el string de conexión en el archivo `.env`**
-   ```
-   DATABASE_URL=postgres://usuario:contraseña@host:puerto/nombre_db
-   ```
-   O bien, separa los valores si tu ORM no utiliza un string completo:
-   ```
-   DB_HOST=host
-   DB_PORT=puerto
-   DB_USER=usuario
-   DB_PASSWORD=contraseña
-   DB_NAME=nombre_db
-   ```
-
-3. **Instala las dependencias**
-   ```bash
-   npm install
-   ```
-
-4. **Ejecuta las migraciones**
-   ```bash
-   npx sequelize db:migrate
-   ```
-
-5. **Levanta el proyecto**
-   ```bash
-   npm run start
-   ```
-
----
-
-## Comandos de migración
-
-Asegúrate de tener configurado Sequelize, TypeORM, Knex o el ORM que uses. Los comandos comunes para migrar son:
-
-```bash
-npx sequelize db:migrate
-# O el comando equivalente para tu ORM
-```
 
 ---
 
