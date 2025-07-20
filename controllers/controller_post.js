@@ -61,7 +61,7 @@ const deleteExistingPost = async (req, res) => {
     if (!deleted) {
       return res.status(404).json({ success: false, message: 'Post no encontrado' });
     }
-    res.status(200).json({ success: true, message: 'Post eliminado correctamente' });
+    res.status(200).json({ success: true, message: 'Post eliminado correctamente', record: deleted });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

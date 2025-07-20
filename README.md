@@ -28,11 +28,11 @@ Esta opción utiliza una instancia de PostgreSQL corriendo en tu máquina local.
 3. **Configura la conexión en el proyecto**  
    Edita el archivo `.env` con la conexión local. Ejemplo:
    ```
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USER=tu_usuario
-   DB_PASSWORD=tu_contraseña
-   DB_NAME=mi_proyecto_db
+   DB_HOST="localhost"
+   DB_PORT="5432"
+   NAME_DATABASE="tcit"
+   USER_DATABASE="postgres"
+   CLAVE_DB="tu_Password1234"
    ```
 
 4. **Instala las dependencias del proyecto**
@@ -62,21 +62,24 @@ Esta opción utiliza Docker y Docker Compose para levantar la base de datos en u
 1. **Crea el archivo `docker-compose.yml`**  
    Ejemplo:
    ```yaml
-   version: '3.8'
-   services:
-     postgres:
-       image: postgres:14
-       restart: always
-       ports:
-         - "5432:5432"
-       environment:
-         POSTGRES_USER: tu_usuario
-         POSTGRES_PASSWORD: tu_contraseña
-         POSTGRES_DB: mi_proyecto_db
-       volumes:
-         - pgdata:/var/lib/postgresql/data
-   volumes:
-     pgdata:
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres_tcit
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: tcit
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: tu_Password1234
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
    ```
 
 2. **Levanta el contenedor**
@@ -87,11 +90,11 @@ Esta opción utiliza Docker y Docker Compose para levantar la base de datos en u
 3. **Configura la conexión en el proyecto**  
    En tu archivo `.env`:
    ```
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USER=tu_usuario
-   DB_PASSWORD=tu_contraseña
-   DB_NAME=mi_proyecto_db
+DB_HOST="localhost"
+DB_PORT="5432"
+NAME_DATABASE="tcit"
+USER_DATABASE="postgres"
+CLAVE_DB="tu_Password1234"
    ```
 
 4. **Instala las dependencias**

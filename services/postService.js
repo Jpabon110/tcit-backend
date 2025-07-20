@@ -54,10 +54,11 @@ const updatePost = async (id, data) => {
 
 const deletePost = async (id) => {
   try {
-    const deleted = await Post.destroy({
+    const deletedRecord = await getPostById(id);
+    await Post.destroy({
       where: { id },
     });
-    return deleted;
+    return deletedRecord;
   } catch (error) {
     console.error('Error en deletePost:', error);
     throw new Error('No se pudo eliminar el post');
