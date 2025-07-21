@@ -114,6 +114,5 @@ Esta opción utiliza Docker y Docker Compose para levantar la base de datos en u
 - Recuerda que debes crear un archivo `.env` en la raíz del proyecto con tus credenciales de base de datos.
 - Si usas Docker, puedes administrar la base de datos desde pgAdmin4 conectándote a `localhost:5432`.
 - Si usas la nube, asegúrate de que la IP de tu máquina tenga acceso a la base de datos.
-- Consulta la documentación de tu ORM para más detalles sobre migraciones y conexión.
 
 ---
