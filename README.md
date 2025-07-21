@@ -11,6 +11,9 @@ Este documento te guiará paso a paso para poner en marcha el proyecto, utilizan
 - [pgAdmin4](https://www.pgadmin.org/) (opcional, para gestionar tu base de datos local)
 - Acceso a un servicio de base de datos en la nube (opcional)
 
+[pruebas backend.webm](https://github.com/user-attachments/assets/7521777a-9634-4b2f-a977-f346951c0c47)
+
+
 ---
 
 ## 1. (Opcion 1) Usar PostgreSQL local + pgAdmin4
