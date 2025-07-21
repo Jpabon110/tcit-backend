@@ -5,7 +5,7 @@ const {
   createNewPost,
   updateExistingPost,
   deleteExistingPost,
-} = require('../controllers/controller_post.js');
+} = require('../controllers/controllerPost.js');
 
 const router = express.Router();
 const authMiddleware = require("../middlewares/authMiddleware");

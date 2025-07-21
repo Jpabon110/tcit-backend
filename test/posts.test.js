@@ -11,7 +11,7 @@ const validToken = jwt.sign(
   { expiresIn: process.env.JWT_EXPIRES_IN }
 );
 
-jest.mock('../controllers/controller_post.js', () => ({
+jest.mock('../controllers/controllerPost.js', () => ({
   getPosts: jest.fn((req, res) =>
     res.status(200).json({ success: true, message: 'getPosts ok' })
   ),
