@@ -1,4 +1,4 @@
-# Guía para levantar el proyecto Node.js + Express + PostgreSQL
+# Guía para levantar el proyecto Node.js + Express + PostgreSQL + ORM Sequelize
 
 Este documento te guiará paso a paso para poner en marcha el proyecto, utilizando tres opciones diferentes para la base de datos PostgreSQL: local, Docker y conexión a la nube.
 
@@ -49,7 +49,6 @@ Esta opción utiliza una instancia de PostgreSQL corriendo en tu máquina local.
    ```bash
    npx sequelize-cli db:migrate --config config/config.js
    npx sequelize-cli db:seed:all --config config/config.js
-   # O el comando propio de tu ORM para migrar la base de datos
    ```
 
 6. **Levanta el proyecto**
@@ -78,13 +77,13 @@ Esta opción utiliza Docker y Docker Compose para levantar la base de datos en u
 3. **Configura la conexión en el proyecto**  
    En tu archivo `.env`:
    ```
-DB_HOST="localhost"
-DB_PORT="5432"
-NAME_DATABASE="tcit"
-USER_DATABASE="postgres"
-CLAVE_DB="tu_Password1234"
-JWT_SECRET=hd72k9d8s7a6d81sajd81726hd91
-JWT_EXPIRES_IN=1h
+   DB_HOST="localhost"
+   DB_PORT="5432"
+   NAME_DATABASE="tcit"
+   USER_DATABASE="postgres"
+   CLAVE_DB="tu_Password1234"
+   JWT_SECRET=hd72k9d8s7a6d81sajd81726hd91
+   JWT_EXPIRES_IN=1h
    ```
 
 4. **Instala las dependencias**
@@ -96,7 +95,6 @@ JWT_EXPIRES_IN=1h
    ```bash
    npx sequelize-cli db:migrate --config config/config.js
    npx sequelize-cli db:seed:all --config config/config.js
-   # O el comando propio de tu ORM para migrar la base de datos
    ```
 
 6. **Levanta el proyecto**
